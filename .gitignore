@@ -1,0 +1,13 @@
+# Godot 4+ ignore directo
+.godot/
+*.import
+export_preset.cfg
+.tmp/
+
+# Archivos de sistema (evita conflictos entre PCs)
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Binarios de exportación (opcional, por si exportas a .exe)
+/export/

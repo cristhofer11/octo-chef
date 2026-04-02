@@ -1,0 +1,274 @@
+[gd_scene format=3 uid="uid://cql62bslrc231"]
+
+[ext_resource type="Script" uid="uid://b8067ek32y35p" path="res://scripts/mundo.gd" id="1_0qx5d"]
+[ext_resource type="PackedScene" uid="uid://davcdgyxvt0ck" path="res://prefabs/estacion.tscn" id="2_0qx5d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2ps7"]
+bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_a2ps7"]
+
+[node name="Mundo" type="Node2D" unique_id=1577912567]
+process_mode = 3
+script = ExtResource("1_0qx5d")
+metadata/_edit_horizontal_guides_ = [208.0]
+
+[node name="Estacion" parent="." unique_id=1497194873 instance=ExtResource("2_0qx5d")]
+process_mode = 1
+position = Vector2(240, 344)
+rotation = -6.2831855
+id_estacion = 1
+tecla_activacion = "accion_1"
+nombre_estacion = "Sartenes 1"
+color_base_estacion = Color(0, 0.48235294, 1, 1)
+velocidad_coccion = 60.0
+tasa_enfriamiento = 95.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion2" parent="." unique_id=1239501473 instance=ExtResource("2_0qx5d")]
+process_mode = 1
+position = Vector2(240, 192)
+id_estacion = 2
+tecla_activacion = "accion_2"
+nombre_estacion = "Sartenes 2"
+color_base_estacion = Color(0, 0.48235294, 1, 1)
+velocidad_coccion = 60.0
+tasa_enfriamiento = 95.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion3" parent="." unique_id=2115448438 instance=ExtResource("2_0qx5d")]
+process_mode = 1
+position = Vector2(488, 88)
+id_estacion = 3
+tecla_activacion = "accion_3"
+nombre_estacion = "Picadora 1"
+color_base_estacion = Color(1, 0.49803922, 0.3137255, 1)
+velocidad_coccion = 35.0
+tasa_enfriamiento = 0.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion4" parent="." unique_id=209235278 instance=ExtResource("2_0qx5d")]
+position = Vector2(584, 88)
+id_estacion = 4
+tecla_activacion = "accion_4"
+nombre_estacion = "Picadora 2"
+color_base_estacion = Color(1, 0.49803922, 0.3137255, 1)
+velocidad_coccion = 35.0
+tasa_enfriamiento = 0.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion5" parent="." unique_id=837383373 instance=ExtResource("2_0qx5d")]
+position = Vector2(832, 192)
+id_estacion = 5
+tecla_activacion = "accion_5"
+nombre_estacion = "Ollas 1"
+color_base_estacion = Color(1, 0.75686276, 0.02745098, 1)
+velocidad_coccion = 12.0
+tasa_enfriamiento = 3.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion6" parent="." unique_id=952387004 instance=ExtResource("2_0qx5d")]
+position = Vector2(832, 344)
+id_estacion = 6
+tecla_activacion = "accion_6"
+nombre_estacion = "Ollas 2"
+color_base_estacion = Color(1, 0.75686276, 0.02745098, 1)
+velocidad_coccion = 12.0
+tasa_enfriamiento = 3.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion7" parent="." unique_id=2140139629 instance=ExtResource("2_0qx5d")]
+position = Vector2(488, 448)
+id_estacion = 7
+tecla_activacion = "accion_7"
+nombre_estacion = "Emplatar 1"
+color_base_estacion = Color(0.18431373, 0.30980393, 0.30980393, 1)
+velocidad_coccion = 25.0
+tasa_enfriamiento = 15.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="Estacion8" parent="." unique_id=50491859 instance=ExtResource("2_0qx5d")]
+position = Vector2(584, 448)
+id_estacion = 8
+tecla_activacion = "accion_8"
+nombre_estacion = "Emplatar 2"
+color_base_estacion = Color(0.18431373, 0.30980393, 0.30980393, 1)
+velocidad_coccion = 25.0
+tasa_enfriamiento = 15.0
+tiempo_max_quemado = 18.0
+grosor_borde = 20.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=697051900]
+
+[node name="ContadorLabel" type="Label" parent="CanvasLayer" unique_id=85652383]
+offset_left = 936.0
+offset_top = 80.0
+offset_right = 1133.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 32
+text = "Platos: 0 / 10"
+
+[node name="TiempoLabel" type="Label" parent="CanvasLayer" unique_id=397987679]
+offset_left = 936.0
+offset_top = 16.0
+offset_right = 1123.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 32
+text = "Tiempo: 150"
+
+[node name="TicketPanel" type="PanelContainer" parent="CanvasLayer" unique_id=627284526]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a2ps7")
+
+[node name="TicketLabel" type="Label" parent="CanvasLayer/TicketPanel" unique_id=705015107]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="PulpoCuerpo" type="ColorRect" parent="." unique_id=773867098]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 526.0
+offset_top = 274.0
+offset_right = 626.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+color = Color(0.35686275, 0.03137255, 0.52156866, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CapaPausa" type="CanvasLayer" parent="." unique_id=469303491]
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CapaPausa" unique_id=137166806]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.21209751, 0.21209751, 0.21209751, 0.71500003)
+
+[node name="Label" type="Label" parent="CapaPausa" unique_id=1166589098]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -11.5
+offset_right = 65.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "JUEGO PAUSADO"
+
+[node name="BotonMenu" type="Button" parent="CapaPausa" unique_id=1992681244]
+offset_left = 504.0
+offset_top = 400.0
+offset_right = 649.0
+offset_bottom = 431.0
+text = "VOLVER AL MENÚ"
+
+[node name="CapaGameOver" type="CanvasLayer" parent="." unique_id=285067232]
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CapaGameOver" unique_id=1105105045]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.84313726)
+
+[node name="Label" type="Label" parent="CapaGameOver" unique_id=935033654]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -116.0
+offset_right = 216.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5411765, 0.011764706, 0.011764706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_a2ps7")
+theme_override_font_sizes/font_size = 40
+text = "¡DESPEDIDO MI LOCO!"
+
+[node name="BotonMenuFinal" type="Button" parent="CapaGameOver" unique_id=1631860645]
+offset_left = 504.0
+offset_top = 408.0
+offset_right = 649.0
+offset_bottom = 439.0
+text = "VOLVER AL MENÚ"
+
+[node name="ResultadoDerrota" type="Label" parent="CapaGameOver" unique_id=1203020030]
+offset_left = 560.0
+offset_top = 304.0
+offset_right = 600.0
+offset_bottom = 327.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CapaVictoria" type="CanvasLayer" parent="." unique_id=2098340384]
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CapaVictoria" unique_id=1789175570]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.84313726)
+
+[node name="Label" type="Label" parent="CapaVictoria" unique_id=160309566]
+offset_left = 344.0
+offset_top = 192.0
+offset_right = 816.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.44313726, 1)
+text = "GRACIAS POR TU ESFUERZO CHEF, TOMA TU SUELDO MÍNIMO"
+
+[node name="BotonMenuVictoria" type="Button" parent="CapaVictoria" unique_id=712642254]
+offset_left = 504.0
+offset_top = 376.0
+offset_right = 649.0
+offset_bottom = 407.0
+text = "VOLVER AL MENÚ"
+
+[node name="ResultadoVictoria" type="Label" parent="CapaVictoria" unique_id=740457867]
+offset_left = 560.0
+offset_top = 256.0
+offset_right = 600.0
+offset_bottom = 279.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

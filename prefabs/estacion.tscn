@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://davcdgyxvt0ck"]
+
+[ext_resource type="Script" uid="uid://buk50lme5jr5i" path="res://scripts/estacion.gd" id="1_spxmq"]
+
+[node name="Estacion" type="Node2D" unique_id=1497194873]
+script = ExtResource("1_spxmq")
+id_estacion = null
+tecla_activacion = null
+nombre_estacion = null
+color_base_estacion = null
+velocidad_coccion = null
+tasa_enfriamiento = null
+tiempo_max_quemado = null
+grosor_borde = null
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1133361742]
+offset_right = 80.0
+offset_bottom = 80.0
+color = Color(0.41960785, 0.91764706, 0.29411766, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1637679114]
+offset_right = 149.0
+offset_bottom = 27.0
+scale = Vector2(0.5377759, 0.7122656)
+
+[node name="Brazo" type="Line2D" parent="." unique_id=2034946701]
+position = Vector2(40, 40)
+width = 15.0
+default_color = Color(0.35612902, 0.031281184, 0.5228277, 1)
+antialiased = true
+
+[node name="NombreLabel" type="Label" parent="." unique_id=94927373]
+offset_left = 7.9999995
+offset_top = 96.0
+offset_right = 88.0
+offset_bottom = 119.0
+scale = Vector2(0.8, 0.8)
+size_flags_horizontal = 4
+horizontal_alignment = 1

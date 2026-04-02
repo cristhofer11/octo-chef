@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bs7xbasciqkhe"]
+
+[ext_resource type="Script" uid="uid://b3mjq8y2na7ya" path="res://scripts/menu_inicio.gd" id="1_hl0wd"]
+
+[node name="MenuInicio" type="Control" unique_id=1528987500]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hl0wd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1233048690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19315353, 0.19315353, 0.19315353, 1)
+
+[node name="TituloLabel" type="Label" parent="." unique_id=1796189198]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -60.0
+offset_right = 181.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "OCTO-CHEF"
+
+[node name="NombresLabel" type="Label" parent="." unique_id=1743251633]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 552.0
+offset_right = 332.0
+offset_bottom = 627.0
+text = "Creado por:
+*	Cristhofer Sandoval
+*	Daniel Reyes"
+
+[node name="Button" type="Button" parent="." unique_id=1130433448]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 408.0
+offset_right = 675.0
+offset_bottom = 477.0
+text = "EMPEZAR COCINA"
+
+[node name="RecordLabel" type="Label" parent="." unique_id=1448506329]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_right = 1.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
