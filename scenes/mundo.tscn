@@ -3,15 +3,44 @@
 [ext_resource type="Script" uid="uid://b8067ek32y35p" path="res://scripts/mundo.gd" id="1_0qx5d"]
 [ext_resource type="PackedScene" uid="uid://davcdgyxvt0ck" path="res://prefabs/estacion.tscn" id="2_0qx5d"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi5ae"]
+bg_color = Color(0.28729528, 0.28729475, 0.28729498, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2ps7"]
-bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.84604335, 0.84604406, 0.8460439, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_a2ps7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vka0"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwj67"]
+bg_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.26779026, 0.26779032, 0.2677901, 1)
 
 [node name="Mundo" type="Node2D" unique_id=1577912567]
 process_mode = 3
@@ -110,27 +139,40 @@ tasa_enfriamiento = 15.0
 tiempo_max_quemado = 18.0
 grosor_borde = 20.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=697051900]
-
-[node name="ContadorLabel" type="Label" parent="CanvasLayer" unique_id=85652383]
-offset_left = 936.0
-offset_top = 80.0
-offset_right = 1133.0
-offset_bottom = 125.0
-theme_override_font_sizes/font_size = 32
-text = "Platos: 0 / 10"
-
-[node name="TiempoLabel" type="Label" parent="CanvasLayer" unique_id=397987679]
-offset_left = 936.0
+[node name="StatsPanel" type="PanelContainer" parent="." unique_id=890315129]
+offset_left = 920.0
 offset_top = 16.0
-offset_right = 1123.0
-offset_bottom = 61.0
+offset_right = 1137.0
+offset_bottom = 81.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yi5ae")
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsPanel" unique_id=710044643]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPanel/MarginContainer" unique_id=917061456]
+layout_mode = 2
+
+[node name="TiempoLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=397987679]
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Tiempo: 150"
 
+[node name="ContadorLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=1409504147]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Platos: 0 / 10"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=697051900]
+
 [node name="TicketPanel" type="PanelContainer" parent="CanvasLayer" unique_id=627284526]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_a2ps7")
 
 [node name="TicketLabel" type="Label" parent="CanvasLayer/TicketPanel" unique_id=705015107]
@@ -139,27 +181,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 metadata/_edit_use_anchors_ = true
 
-[node name="PulpoCuerpo" type="ColorRect" parent="." unique_id=773867098]
-custom_minimum_size = Vector2(100, 100)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 526.0
-offset_top = 274.0
-offset_right = 626.0
-offset_bottom = 374.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-color = Color(0.35686275, 0.03137255, 0.52156866, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="CapaPausa" type="CanvasLayer" parent="." unique_id=469303491]
 process_mode = 3
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CapaPausa" unique_id=137166806]
 anchors_preset = 15
@@ -182,13 +205,23 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 35
 text = "JUEGO PAUSADO"
+
+[node name="Button2" type="Button" parent="CapaPausa" unique_id=1680883775]
+offset_left = 944.0
+offset_top = 544.0
+offset_right = 1089.0
+offset_bottom = 575.0
+theme_override_font_sizes/font_size = 20
+text = "INSTRUCCIONES"
 
 [node name="BotonMenu" type="Button" parent="CapaPausa" unique_id=1992681244]
 offset_left = 504.0
 offset_top = 400.0
 offset_right = 649.0
 offset_bottom = 431.0
+theme_override_font_sizes/font_size = 20
 text = "VOLVER AL MENÚ"
 
 [node name="CapaGameOver" type="CanvasLayer" parent="." unique_id=285067232]
@@ -272,3 +305,214 @@ offset_bottom = 279.0
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="PulpoCuerpo" type="ColorRect" parent="." unique_id=773867098]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 526.0
+offset_top = 274.0
+offset_right = 626.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+color = Color(0.35686275, 0.03137255, 0.52156866, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CapaInstrucciones" type="CanvasLayer" parent="." unique_id=522042208]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CapaInstrucciones" unique_id=1294776425]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BotonVolver" type="Button" parent="CapaInstrucciones" unique_id=1387490231]
+offset_left = 808.0
+offset_top = 584.0
+offset_right = 1037.0
+offset_bottom = 638.0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.9764692, 0.9764692, 0.9764691, 0.5019608)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_font_sizes/font_size = 33
+text = "VOLVER 
+"
+
+[node name="PanelContexto" type="PanelContainer" parent="CapaInstrucciones" unique_id=2133025595]
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 697.0
+offset_bottom = 627.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0vka0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CapaInstrucciones/PanelContexto" unique_id=601792984]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CapaInstrucciones/PanelContexto/MarginContainer" unique_id=1299640923]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TituloContexto5" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1206026338]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "¡ERES EL OCTO-CHEF!, un pulpo talentoso en la cocina. Tu misión es preparar los pedidos
+ del ticket antes de que se acabe el tiempo. ¡Usa tus tentáculos para multitarrear!
+"
+horizontal_alignment = 1
+
+[node name="TituloContexto" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1672747567]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "FUNDAMENTOS:
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1141654782]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• Progreso: Llena cada barra al 100% para completar la estación.
+• El Plato: Debes completar todas las estaciones del ticket para servirlo.
+• ¡ERROR!: Usar una estación incorrecta o ya terminada te quitará tiempo.
+"
+
+[node name="TituloContexto2" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1928599920]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "GESTIÓN DE TENTÁCULOS (EL CAOS)
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto2" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=91217687]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• Puedes usar varias estaciones a la vez, pero mientras más manos
+   uses, más lento cocinarás. ¡Equilibra la velocidad con el caos!
+"
+
+[node name="TituloContexto3" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=250480958]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "LAS 4 ESTACIONES:
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto3" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1310405690]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• 🔥 Sartenes: Muy rápidas, pero se enfrían rápido si las sueltas.
+• 🔪 Picadoras: Velocidad promedio y el progreso no baja.
+• 🍲 Ollas: Cocción lenta y el progreso baja muy poco a poco.
+• 🍽️ Emplatar: Velocidad y enfriamiento equilibrados.
+"
+
+[node name="TituloContexto4" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1812348322]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "MODO EXPERTO (POST-META):
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto4" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1015597101]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• Dificultad: Al superar el mínimo de platos, los pedidos pedirán más estaciones.
+• Bonus: Cada plato extra entregado te dará Segundos de Bonus aleatorios para 
+	   romper tu récord."
+
+[node name="PanelTeclas" type="PanelContainer" parent="CapaInstrucciones" unique_id=1682598195]
+offset_left = 784.0
+offset_top = 24.0
+offset_right = 1089.0
+offset_bottom = 567.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vwj67")
+
+[node name="MarginContainer" type="MarginContainer" parent="CapaInstrucciones/PanelTeclas" unique_id=175864307]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CapaInstrucciones/PanelTeclas/MarginContainer" unique_id=1171639020]
+layout_mode = 2
+
+[node name="TituloContexto" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=1898151135]
+layout_mode = 2
+text = "TECLAS DE LOS TENTACULOS:
+"
+horizontal_alignment = 1
+
+[node name="TituloContexto2" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=1141637722]
+layout_mode = 2
+text = "FILA SUPERIOR (ESTACIONES ARRIBA)
+"
+
+[node name="TextoContexto" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=995724762]
+layout_mode = 2
+text = "• [Q] : Sartenes 2
+• [W] : Picadora 1
+• [E] : Picadora 2
+• [R] : Ollas 1
+"
+
+[node name="TituloContexto3" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=64926771]
+layout_mode = 2
+text = "FILA INFERIOR (ESTACIONES ABAJO)
+"
+
+[node name="TextoContexto2" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=555156013]
+layout_mode = 2
+text = "• [A] : Sartenes 1
+• [S] : Emplatar 1
+• [D] : Emplatar 2
+• [F] : Ollas 2
+"
+
+[node name="TituloContexto4" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=1820138484]
+layout_mode = 2
+text = "SISTEMA
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto3" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=319632583]
+layout_mode = 2
+text = "• [ESC] : Pausar juego
+"

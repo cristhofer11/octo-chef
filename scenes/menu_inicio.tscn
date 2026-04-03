@@ -2,6 +2,22 @@
 
 [ext_resource type="Script" uid="uid://b3mjq8y2na7ya" path="res://scripts/menu_inicio.gd" id="1_hl0wd"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxdgc"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l7p0"]
+bg_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.26779026, 0.26779032, 0.2677901, 1)
+
 [node name="MenuInicio" type="Control" unique_id=1528987500]
 layout_mode = 3
 anchors_preset = 15
@@ -52,6 +68,7 @@ offset_left = 472.0
 offset_top = 408.0
 offset_right = 675.0
 offset_bottom = 477.0
+theme_override_font_sizes/font_size = 22
 text = "EMPEZAR COCINA"
 
 [node name="RecordLabel" type="Label" parent="." unique_id=1448506329]
@@ -66,5 +83,206 @@ offset_right = 1.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Button2" type="Button" parent="." unique_id=1744738018]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 512.0
+offset_right = 1091.0
+offset_bottom = 581.0
+text = "INSTRUCCIONES "
+
+[node name="CapaInstrucciones" type="CanvasLayer" parent="." unique_id=1753812167]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CapaInstrucciones" unique_id=1214563617]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BotonVolver" type="Button" parent="CapaInstrucciones" unique_id=728308652]
+offset_left = 808.0
+offset_top = 584.0
+offset_right = 1037.0
+offset_bottom = 638.0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.9764692, 0.9764692, 0.9764691, 0.5019608)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_font_sizes/font_size = 33
+text = "VOLVER 
+"
+
+[node name="PanelContexto" type="PanelContainer" parent="CapaInstrucciones" unique_id=522114396]
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 697.0
+offset_bottom = 627.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nxdgc")
+
+[node name="MarginContainer" type="MarginContainer" parent="CapaInstrucciones/PanelContexto" unique_id=1729030322]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CapaInstrucciones/PanelContexto/MarginContainer" unique_id=1520781509]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TituloContexto5" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1675680448]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "¡ERES EL OCTO-CHEF!, un pulpo talentoso en la cocina. Tu misión es preparar los pedidos
+ del ticket antes de que se acabe el tiempo. ¡Usa tus tentáculos para multitarrear!
+"
+horizontal_alignment = 1
+
+[node name="TituloContexto" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1746116840]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "FUNDAMENTOS:
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1913156154]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• Progreso: Llena cada barra al 100% para completar la estación.
+• El Plato: Debes completar todas las estaciones del ticket para servirlo.
+• ¡ERROR!: Usar una estación incorrecta o ya terminada te quitará tiempo.
+"
+
+[node name="TituloContexto2" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=194967526]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "GESTIÓN DE TENTÁCULOS (EL CAOS)
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto2" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=573960670]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• Puedes usar varias estaciones a la vez, pero mientras más manos
+   uses, más lento cocinarás. ¡Equilibra la velocidad con el caos!
+"
+
+[node name="TituloContexto3" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=304506484]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "LAS 4 ESTACIONES:
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto3" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=895168584]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• 🔥 Sartenes: Muy rápidas, pero se enfrían rápido si las sueltas.
+• 🔪 Picadoras: Velocidad promedio y el progreso no baja.
+• 🍲 Ollas: Cocción lenta y el progreso baja muy poco a poco.
+• 🍽️ Emplatar: Velocidad y enfriamiento equilibrados.
+"
+
+[node name="TituloContexto4" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1753762110]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "MODO EXPERTO (POST-META):
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto4" type="Label" parent="CapaInstrucciones/PanelContexto/MarginContainer/VBoxContainer" unique_id=1478362191]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "• Dificultad: Al superar el mínimo de platos, los pedidos pedirán más estaciones.
+• Bonus: Cada plato extra entregado te dará Segundos de Bonus aleatorios para 
+	   romper tu récord."
+
+[node name="PanelTeclas" type="PanelContainer" parent="CapaInstrucciones" unique_id=2008901710]
+offset_left = 784.0
+offset_top = 24.0
+offset_right = 1089.0
+offset_bottom = 567.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5l7p0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CapaInstrucciones/PanelTeclas" unique_id=1276757828]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CapaInstrucciones/PanelTeclas/MarginContainer" unique_id=417597316]
+layout_mode = 2
+
+[node name="TituloContexto" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=317873075]
+layout_mode = 2
+text = "TECLAS DE LOS TENTACULOS:
+"
+horizontal_alignment = 1
+
+[node name="TituloContexto2" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=1284357618]
+layout_mode = 2
+text = "FILA SUPERIOR (ESTACIONES ARRIBA)
+"
+
+[node name="TextoContexto" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=742777542]
+layout_mode = 2
+text = "• [Q] : Sartenes 2
+• [W] : Picadora 1
+• [E] : Picadora 2
+• [R] : Ollas 1
+"
+
+[node name="TituloContexto3" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=938096835]
+layout_mode = 2
+text = "FILA INFERIOR (ESTACIONES ABAJO)
+"
+
+[node name="TextoContexto2" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=480586261]
+layout_mode = 2
+text = "• [A] : Sartenes 1
+• [S] : Emplatar 1
+• [D] : Emplatar 2
+• [F] : Ollas 2
+"
+
+[node name="TituloContexto4" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=544064894]
+layout_mode = 2
+text = "SISTEMA
+"
+horizontal_alignment = 1
+
+[node name="TextoContexto3" type="Label" parent="CapaInstrucciones/PanelTeclas/MarginContainer/VBoxContainer" unique_id=146080632]
+layout_mode = 2
+text = "• [ESC] : Pausar juego
+"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

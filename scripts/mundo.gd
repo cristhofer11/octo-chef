@@ -1,7 +1,7 @@
 extends Node2D
 
 var platos_servidos : int = 0
-var tiempo_restante : float = 80.0
+var tiempo_restante : float = 50.0
 var juego_terminado : bool = false
 
 # --- VARIABLES VISUALES DE FEEDBACK ---
@@ -9,11 +9,16 @@ var tiempo_verde_timer : float = 0.0
 var tiempo_rojo_timer : float = 0.0
 
 # --- REFERENCIAS A LA UI ---
-@onready var label_puntos = $CanvasLayer/ContadorLabel
-@onready var label_tiempo = $CanvasLayer/TiempoLabel
+@onready var label_puntos = $StatsPanel/MarginContainer/VBoxContainer/ContadorLabel
+@onready var label_tiempo = $StatsPanel/MarginContainer/VBoxContainer/TiempoLabel
 @onready var label_ticket = $CanvasLayer/TicketPanel/TicketLabel
 @onready var capa_pausa = $CapaPausa
 @onready var boton_menu = $CapaPausa/BotonMenu
+@onready var boton_instrucciones_pausa = $CapaPausa/Button2 # El que abre la capa
+
+# --- REFERENCIA A CAPA INSTRUCCIONES ---
+@onready var capa_instrucciones = $CapaInstrucciones
+@onready var boton_volver_instrucciones = $CapaInstrucciones/BotonVolver
 
 # --- REFERENCIAS DE FINALIZACIÓN ---
 @onready var capa_game_over = $CapaGameOver
@@ -26,10 +31,19 @@ func _ready():
 	if capa_pausa: capa_pausa.visible = false
 	if capa_game_over: capa_game_over.visible = false
 	if capa_victoria: capa_victoria.visible = false
+	if capa_instrucciones: capa_instrucciones.visible = false # Siempre oculta al empezar
 	
+	# Conexiones de botones de menús
 	if boton_menu: boton_menu.pressed.connect(_on_boton_menu_pressed)
 	if boton_menu_final: boton_menu_final.pressed.connect(_on_boton_menu_pressed)
 	if boton_menu_victoria: boton_menu_victoria.pressed.connect(_on_boton_menu_pressed)
+	
+	# --- CONEXIÓN DE INSTRUCCIONES ---
+	if boton_instrucciones_pausa:
+		boton_instrucciones_pausa.pressed.connect(_on_abrir_instrucciones)
+	
+	if boton_volver_instrucciones:
+		boton_volver_instrucciones.pressed.connect(_on_cerrar_instrucciones)
 	
 	GameManager.generar_receta_aleatoria()
 	actualizar_ui()
@@ -46,6 +60,7 @@ func _process(delta):
 	label_tiempo.text = "TIEMPO: " + str(int(tiempo_restante))
 	
 	if tiempo_restante <= 0:
+		tiempo_restante = 0
 		finalizar_partida()
 
 	var manos_ocupadas = 0
@@ -67,18 +82,27 @@ func _process(delta):
 			if "vibracion_forzada" in nodo: nodo.vibracion_forzada = modo_caos
 
 func gestionar_color_tiempo(delta):
+	label_tiempo.visible = true
+	
 	if tiempo_rojo_timer > 0:
 		tiempo_rojo_timer -= delta
 		label_tiempo.add_theme_color_override("font_color", Color.RED)
+		label_tiempo.modulate.a = 1.0
+		
 	elif tiempo_verde_timer > 0:
 		tiempo_verde_timer -= delta
 		label_tiempo.add_theme_color_override("font_color", Color.GREEN)
+		label_tiempo.modulate.a = 1.0
+		
 	elif tiempo_restante < 20:
 		label_tiempo.add_theme_color_override("font_color", Color.RED)
-		label_tiempo.visible = int(tiempo_restante * 5) % 2 == 0
+		if int(tiempo_restante * 5) % 2 == 0:
+			label_tiempo.modulate.a = 1.0
+		else:
+			label_tiempo.modulate.a = 0.0
 	else:
 		label_tiempo.add_theme_color_override("font_color", Color.WHITE)
-		label_tiempo.visible = true
+		label_tiempo.modulate.a = 1.0
 
 func _on_estacion_finalizada(id_estacion: int):
 	if id_estacion == -1:
@@ -116,7 +140,7 @@ func actualizar_ui():
 	}
 	
 	var txt = GameManager.nombre_plato_actual.to_upper() + "\n"
-	txt += "------------------------\nEstaciones:\n\n"
+	txt += "--------------------------\nESTACIONES:\n\n"
 	for id in GameManager.receta_actual:
 		var nombre = nombres_estaciones.get(id, "Estación " + str(id))
 		txt += "\t" + ("[OK] " if id in GameManager.pasos_completados else "[ ] ") + nombre + "\n"
@@ -136,23 +160,20 @@ func actualizar_ui():
 
 func finalizar_partida():
 	juego_terminado = true
-	get_tree().paused = true 
+	get_tree().paused = true
+	label_tiempo.modulate.a = 1.0
 	
-	# 1. Chequeamos si es un nuevo récord ANTES de actualizar el GameManager
 	var es_nuevo_record : bool = platos_servidos > GameManager.record_personal
 	
 	if es_nuevo_record:
 		GameManager.record_personal = platos_servidos
 		GameManager.guardar_record()
 	
-	# 2. Preparamos el texto base de resultados
 	var texto_res = "PUNTUACIÓN: " + str(platos_servidos) + " / " + str(GameManager.meta_minima)
 	
-	# 3. Mostrar Pantalla de Victoria
 	if platos_servidos >= GameManager.meta_minima:
 		if capa_victoria:
 			capa_victoria.visible = true
-			# Buscamos el Label de resultados en la capa (asegúrate que el nombre coincida)
 			var label_vic = capa_victoria.get_node_or_null("ResultadoVictoria")
 			if label_vic:
 				var mensaje = texto_res
@@ -160,14 +181,22 @@ func finalizar_partida():
 					mensaje += "\n\n¡NUEVO RÉCORD PERSONAL!"
 					mensaje += "\nNUEVA MARCA: " + str(GameManager.record_personal)
 				label_vic.text = mensaje
-	
-	# 4. Mostrar Pantalla de Derrota
 	else:
 		if capa_game_over:
 			capa_game_over.visible = true
 			var label_der = capa_game_over.get_node_or_null("ResultadoDerrota")
 			if label_der:
 				label_der.text = texto_res 
+
+# --- NUEVAS FUNCIONES PARA INSTRUCCIONES ---
+
+func _on_abrir_instrucciones():
+	capa_instrucciones.visible = true
+
+func _on_cerrar_instrucciones():
+	capa_instrucciones.visible = false
+
+# ------------------------------------------
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") and not juego_terminado:
@@ -176,6 +205,9 @@ func _input(event):
 func toggle_pausa():
 	get_tree().paused = !get_tree().paused
 	if capa_pausa: capa_pausa.visible = get_tree().paused
+	# Si cerramos la pausa, también cerramos las instrucciones por si estaban abiertas
+	if not get_tree().paused:
+		capa_instrucciones.visible = false
 
 func _on_boton_menu_pressed():
 	get_tree().paused = false

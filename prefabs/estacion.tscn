@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://buk50lme5jr5i" path="res://scripts/estacion.gd" id="1_spxmq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spxmq"]
+
 [node name="Estacion" type="Node2D" unique_id=1497194873]
 script = ExtResource("1_spxmq")
 id_estacion = null
@@ -22,6 +24,7 @@ color = Color(0.41960785, 0.91764706, 0.29411766, 1)
 offset_right = 149.0
 offset_bottom = 27.0
 scale = Vector2(0.5377759, 0.7122656)
+theme_override_styles/background = SubResource("StyleBoxFlat_spxmq")
 
 [node name="Brazo" type="Line2D" parent="." unique_id=2034946701]
 position = Vector2(40, 40)
